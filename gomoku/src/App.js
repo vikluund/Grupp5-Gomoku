@@ -1,12 +1,12 @@
 import "./App.css";
 import React from "react";
-import Board from "./components/Board";
+import Games from "./components/Games"
 
 function App() {
   return (
     <div>
       <h1>HELLO WORLD</h1>
-      <Board></Board>
+      <Games></Games>
     </div>
   );
 }
