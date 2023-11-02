@@ -173,6 +173,7 @@ const BoardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  color: white;
   .active {
     font-weight: bold;
     font-size: 1.1rem;
@@ -190,13 +191,13 @@ const BoardCell = styled.div`
 `;
 
 const GameName = styled.h1`
-  color: #1f3438;
-  font-family: "go3v2";
+  color: white;
+  font-family: "gang_of_three";
 `;
 
 const CurrentRound = styled.p`
   font-size: 1.5rem;
-  font-family: "go3v2";
+  font-family: "gang_of_three";
 `;
 
 const PlayerContainer = styled.div`
@@ -204,7 +205,7 @@ const PlayerContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   margin: 10px;
-  font-family: "go3v2";
+  font-family: "gang_of_three";
 `;
 
 const PlayerOne = styled.p`
