@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Nokora:wght@700&family=Noto+Sans+JP:wght@300&display=swap");
+
+@font-face {
+  font-family: "gang_of_three";
+  src: url("./fonts/go3v2.ttf");
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-color: #131d20;
+}
