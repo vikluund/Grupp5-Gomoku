@@ -5,13 +5,35 @@
 
 @font-face {
     font-family: 'gang_of_three';
-    src: url('./fonts/go3v2.ttf');
+    src: url('./fonts/go3v2.ttf') format('truetype');
 }
+
+:root {
+    font-family: Montserrat;
+
+    /* Use color with: var(--color-name) */
+
+    --wood: #debd76;
+    --wood-light: #fce7b8;
+    --wood-yellow: #f9d584;
+
+    --green-light: #6c954c;
+    --green-dark: #35533d;
+
+    --footer-blue: #4b767e;
+    --black-green: #1f3438;
+    --black-blue: #131d20;
+    --bg-black: #040505;
+
+    --black: #000;
+    --white: #fff;
+}
+
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
     min-height: 100vh;
-    background-color: #131d20;
+    background-color: var(--black-green);
 }
