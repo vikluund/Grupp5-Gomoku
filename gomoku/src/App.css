@@ -1,14 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Nokora:wght@700&family=Noto+Sans+JP:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nokora:wght@700&family=Noto+Sans+JP:wght@300&display=swap');
+
+/* Google Fonts: Abel, Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 @font-face {
-  font-family: "gang_of_three";
-  src: url("./fonts/go3v2.ttf");
+    font-family: 'gang_of_three';
+    src: url('./fonts/go3v2.ttf');
 }
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  min-height: 100vh;
-  background-color: #131d20;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-color: #131d20;
 }
