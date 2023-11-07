@@ -1,8 +1,8 @@
 import "./App.css";
 import React from "react";
 import Board from "./components/Board";
-import Navbar from "./components/NavbarComponent";
 import Games from "./components/Games"
+import Navbar from "./components/NavbarComponent";
 import Footer from "./components/FooterComponent";
 
 function App() {
@@ -16,4 +16,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
