@@ -3,17 +3,17 @@ import styled from "styled-components";
 
 const Nav = styled.nav`
   width: 100%;
-  height: 6rem;
+  height: 7rem;
   background-color: #1f3438;
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: space-between;
+  gap: 3em;
   color: #debd76;
 `;
 const NavContainer = styled.div`
-  align-self: center;
-  padding: 10rem 10rem;
+  align-self: end;
+  margin-left: 17.7em;
 `;
 const NavLogga = styled.div`
   font-size: 36px;
@@ -39,26 +39,16 @@ const RulesButton = styled.button`
 `;
 
 const RulesFlex = styled.div`
-  display: flex;
-  justify-content: end;
   padding: 2rem 6rem 0 0;
   position: absolute;
-  left: 78%;
+  left: 20%;
 `;
 
 const RulesCard = styled.div`
-  width: 12rem;
+  width: 600px;
+  height: 600px;
   border: solid #debd76 2px;
-  padding: 1rem;
   background-color: white;
-`;
-
-const RulesHeader = styled.div`
-  font-weight: 500;
-  font-size: 18px;
-`;
-const Rules = styled.div`
-  margin-top: 0.5em;
 `;
 
 const Navbar = () => {
@@ -81,14 +71,7 @@ const Navbar = () => {
       </Nav>
       {show && (
         <RulesFlex>
-          <RulesCard>
-            <RulesHeader>Regler</RulesHeader>
-            <Rules>
-              Spelat på en 15x15-rutnätsplan tar två spelare turvis att placera
-              sina stenar med målet att bilda en obruten rad av fem, antingen
-              horisontellt, vertikalt eller diagonalt.
-            </Rules>
-          </RulesCard>
+          <RulesCard></RulesCard>
         </RulesFlex>
       )}
     </>
