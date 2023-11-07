@@ -38,3 +38,11 @@ body {
     min-height: 100vh;
     background-color: var(--black-green);
 }
+
+
+.app-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 150px;
+  }
