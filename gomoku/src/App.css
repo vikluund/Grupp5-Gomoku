@@ -1,48 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Nokora:wght@700&family=Noto+Sans+JP:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nokora:wght@700&family=Noto+Sans+JP:wght@300&display=swap");
 
 /* Google Fonts: Abel, Montserrat */
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap");
 
 @font-face {
-    font-family: 'gang_of_three';
-    src: url('./fonts/go3v2.ttf') format('truetype');
+  font-family: "gang_of_three";
+  src: url("./fonts/go3v2.ttf") format("truetype");
 }
 
 :root {
-    font-family: Montserrat;
-    color: var(--wood);
+  font-family: Montserrat;
+  color: var(--wood);
 
-    /* Use color with: var(--color-name) */
+  /* Use color with: var(--color-name) */
 
-    --wood: #debd76;
-    --wood-light: #fce7b8;
-    --wood-yellow: #f9d584;
+  --wood: #debd76;
+  --wood-light: #fce7b8;
+  --wood-yellow: #f9d584;
 
-    --green-light: #6c954c;
-    --green-dark: #35533d;
+  --green-light: #6c954c;
+  --green-dark: #35533d;
 
-    --footer-blue: #4b767e;
-    --black-green: #1f3438;
-    --black-blue: #131d20;
-    --bg-black: #040505;
+  --footer-blue: #4b767e;
+  --black-green: #1f3438;
+  --black-blue: #131d20;
+  --bg-black: #040505;
 
-    --black: #000;
-    --white: #fff;
+  --black: #000;
+  --white: #fff;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    min-height: 100vh;
-    background-color: var(--black-green);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-color: var(--black-green);
 }
 
-
 .app-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 150px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 150px;
+}
