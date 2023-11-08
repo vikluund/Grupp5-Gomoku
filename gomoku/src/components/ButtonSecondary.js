@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const SecondaryButton = ({ buttonText, onClick, disabled }) => {
@@ -17,6 +17,12 @@ const SecondaryButton = ({ buttonText, onClick, disabled }) => {
         disabled={false}
     />
 */
+
+SecondaryButton.propTypes = {
+    buttonText: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired
+}
 
 const Button = styled.button`
     width: 10.5rem;

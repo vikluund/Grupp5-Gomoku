@@ -39,9 +39,40 @@ body {
   background-color: var(--black-green);
 }
 
+.layout-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-container {
+    width: 70%;
+}
+
 .app-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 150px;
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    /*
+    align-items: center;
+    margin-right: 150px;
+    */
+    /* background-color: #4b767e; */
+}
+
+.main-background {
+    background-image: url('../public/images/bg-r.svg'),
+        url('../public/images/bg-l.svg');
+    background-repeat: no-repeat;
+    background-size: 25%, 20%;
+    background-position: bottom -5rem right, bottom -5rem left;
+    background-clip: padding-box;
+}
+
+.main-container {
+    width: 70%;
+}
+
+.side-container {
+    width: 30%;
+    margin: 20px 0;
 }
