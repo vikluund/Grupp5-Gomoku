@@ -1,7 +1,6 @@
 import "./App.css";
 import React from "react";
 import Board from "./components/Board";
-import Games from "./components/Games";
 import Navbar from "./components/GomokuHeader/NavbarComponent";
 import Footer from "./components/GomokuFooter/FooterComponent";
 import GomokuSide from "./components/GomokuSide";
@@ -15,7 +14,6 @@ function App() {
             <div className="app-container main-background">
                 <div className="main-container">
                     <Board></Board>
-                    <Games></Games>
                 </div>
                 <div className="side-container">
                     <GomokuSide />
