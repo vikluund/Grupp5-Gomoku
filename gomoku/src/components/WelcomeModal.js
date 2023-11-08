@@ -41,8 +41,8 @@ const WelcomeModal = () => {
 
 const ModalMain = styled.div`
     /* Modal box */
-    width: 450px;
-    height: 400px;
+    width: 65%;
+    height: auto;
     margin: 1rem;
     padding: 2rem;
     border-radius: 0.32rem;

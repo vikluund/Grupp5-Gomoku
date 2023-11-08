@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const PrimaryButton = ({ buttonText, onClick, disabled }) => {
+const PrimaryButtonSmall = ({ buttonText, onClick, disabled }) => {
     return (
         <Button onClick={onClick} disabled={disabled}>
             {buttonText}
@@ -11,23 +11,23 @@ const PrimaryButton = ({ buttonText, onClick, disabled }) => {
 }
 
 /*  On parent component:
-    <PrimaryButton
+    <PrimaryButtonSmall
         buttonText="Button Text Here"
         onClick={YourHandleClickFunctionHere}
         disabled={false}
     />
 */
 
-PrimaryButton.propTypes = {
+PrimaryButtonSmall.propTypes = {
     buttonText: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     disabled: PropTypes.bool.isRequired
 }
 
 const Button = styled.button`
-    width: 10.5rem;
-    height: 4rem;
-    padding: 0.5rem 1.3rem;
+    width: 9rem;
+    height: 2.5rem;
+    padding: 0.4rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@ const Button = styled.button`
 
     color: var(--green-dark);
     font-family: Montserrat;
-    font-size: 1rem;
+    font-size: 15px;
     font-weight: 600;
     border-radius: 0.25rem;
     background-color: var(--wood-yellow);
@@ -53,4 +53,4 @@ const Button = styled.button`
     }
 `
 
-export default PrimaryButton
+export default PrimaryButtonSmall

@@ -8,17 +8,27 @@ import GomokuSide from './components/GomokuSide'
 
 function App() {
     return (
-        <div>
-            <Navbar />
-            {/* <Board></Board> */}
-            <div className="app-container">
-                {' '}
-                {/* Använd app-container för att styra layouten */}
-                <Board></Board>
-                <Games></Games>
-                <GomokuSide /> {/* Placera GomokuSide till höger om Board */}
-                <Footer />
+        <div className="layout-container">
+            <div className="header-container">
+                <Navbar />
             </div>
+            <div className="app-container main-background">
+                <div className="main-container">
+                    <Board></Board>
+                    <Games></Games>
+                </div>
+                <div className="side-container">
+                    <GomokuSide />
+                </div>
+            </div>
+            <Footer />
+            {/*
+            <div style={{ backgroundColor: '#000' }}>
+                <p></p>
+                FOOTER
+                <p></p>
+            </div>
+            */}
         </div>
     )
 }
