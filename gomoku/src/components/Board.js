@@ -3,9 +3,11 @@ import styled from "styled-components";
 import backgroundImage from "../assets/wood.jpg";
 import blackPiece from "../assets/BlackPiece.png";
 import whitePiece from "../assets/WhitePiece.png";
+import GameOver from "./GameOver";
 
 const Board = () => {
   const [gameData, setGameData] = useState(null);
+  const [winner, setWinner] = useState(null);
 
   useEffect(() => {
     const fetchGame = async () => {
@@ -128,7 +130,9 @@ const Board = () => {
           console.error("Error updating game data:", error);
         }
         if (checkWin(newTiles, currentPlayer)) {
-          alert(`Player ${currentPlayer} wins!`);
+          setTimeout(() => {
+            setWinner(currentPlayer);
+          }, 100);
         }
       }
     };
@@ -153,6 +157,7 @@ const Board = () => {
     <BoardContainer>
       <GameName>{gameData?.name}</GameName>
       <CurrentRound>Round: {gameData?.round}</CurrentRound>
+      {winner && <GameOver winner={winner}></GameOver>}
       <PlayerContainer>
         <PlayerOne className={gameData?.player === 1 ? "active" : ""}>
           Player 1: {gameData?.player1.name}
