@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import backgroundImage from '../assets/wood.jpg'
 import blackPiece from '../assets/BlackPiece.png'
 import whitePiece from '../assets/WhitePiece.png'
-import Board from './Board'
 
 const Games = () => {
     const [gamesData, setgamesData] = useState(null)
@@ -55,7 +54,7 @@ const Games = () => {
                     </button>
                 </section>
             </GameButton>
-            {gamesData && <Board gameData={gamesData} />}
+            {/* {gamesData && <Board gameData={gamesData} />} */}
             <BoardContainer>{renderBoard()}</BoardContainer>
         </>
     )
