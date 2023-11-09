@@ -2,36 +2,36 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Nav = styled.nav`
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 7rem;
-  background-color: #1f3438;
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 3em;
+  gap: 17vw;
   color: #debd76;
 `;
 const NavContainer = styled.div`
   align-self: end;
-  margin-left: 17.7em;
+  /* margin-left: 17.7em; */
 `;
 const NavLogga = styled.div`
-  font-size: 36px;
+  font-size: 3.8vw;
   font-family: "gang_of_three";
 `;
 
 const NavLoggaEnd = styled.span`
-  font-size: 36px;
+  font-size: 2.8vw;
   font-family: "gang_of_three";
   color: #4c954f;
 `;
 
 const RulesButton = styled.button`
-  width: 129px;
-  height: 36px;
+  width: 9vw;
+  height: 5vh;
   background: #35533d;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  font-size: 15px;
+  font-size: 1vw;
   color: #debd76;
   border: solid #35533d;
   border-radius: 3px;
