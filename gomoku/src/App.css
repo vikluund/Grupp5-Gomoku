@@ -37,11 +37,19 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     background-color: var(--black-green);
+
+    background-image: url('../public/images/bg-r.svg'),
+        url('../public/images/bg-l.svg');
+    background-repeat: no-repeat;
+    background-size: 25%, 20%;
+    background-position: bottom 3rem right, bottom 3rem left;
+    background-clip: border-box;
 }
 
 .layout-container {
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
+    min-height: 100vh;
 }
 
 .header-container {
@@ -52,15 +60,8 @@ body {
     display: flex;
     width: auto;
     justify-content: space-between;
-}
-
-.main-background {
-    background-image: url('../public/images/bg-r.svg'),
-        url('../public/images/bg-l.svg');
-    background-repeat: no-repeat;
-    background-size: 25%, 20%;
-    background-position: bottom -5rem right, bottom -5rem left;
-    background-clip: border-box;
+    margin: 4rem 0;
+    flex-grow: 1;
 }
 
 .main-container {
@@ -71,5 +72,8 @@ body {
 
 .side-container {
     width: 30%;
-    margin: 20px 0;
+}
+
+.footer-container {
+    width: 100%;
 }

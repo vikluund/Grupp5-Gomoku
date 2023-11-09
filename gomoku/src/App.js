@@ -15,7 +15,7 @@ function App() {
             <div className="header-container">
                 <Navbar />
             </div>
-            <div className="app-container main-background">
+            <div className="app-container">
                 <div className="main-container">
                     <Router>
                         <Routes>
@@ -29,7 +29,9 @@ function App() {
                     <GomokuSide />
                 </div>
             </div>
-            <Footer />
+            <div className="footer-container">
+                <Footer />
+            </div>
         </div>
     )
 }
