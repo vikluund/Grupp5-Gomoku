@@ -6,7 +6,17 @@ import whitePiece from "../assets/WhitePiece.png";
 import GameOver from "./GameOver";
 
 const Board = () => {
-  const [gameData, setGameData] = useState(null);
+  const [gameData, setGameData] = useState({
+    name: "",
+    round: 1,
+    player: 1,
+    player1: { name: "" },
+    player2: { name: "" },
+    state: "playing",
+    board: {
+      tiles: Array(17).fill(Array(17).fill(0)), // Initialize with an empty board
+    },
+  });
   const [winner, setWinner] = useState(null);
 
   useEffect(() => {
@@ -89,6 +99,22 @@ const Board = () => {
           }
         }
       }
+      let isBoardFull = true;
+      for (let row = 0; row < tiles.length; row++) {
+        for (let col = 0; col < tiles[row].length; col++) {
+          if (tiles[row][col] === 0) {
+            isBoardFull = false;
+            break;
+          }
+        }
+        if (!isBoardFull) {
+          break;
+        }
+      }
+
+      if (isBoardFull) {
+        return "tie";
+      }
 
       return false;
     };
@@ -129,9 +155,13 @@ const Board = () => {
         } catch (error) {
           console.error("Error updating game data:", error);
         }
-        if (checkWin(newTiles, currentPlayer)) {
+        if (checkWin(newTiles, currentPlayer) === true) {
           setTimeout(() => {
             setWinner(currentPlayer);
+          }, 100);
+        } else if (checkWin(newTiles, currentPlayer) === "tie") {
+          setTimeout(() => {
+            setWinner("tie");
           }, 100);
         }
       }
@@ -155,16 +185,16 @@ const Board = () => {
 
   return (
     <BoardContainer>
-      <GameName>{gameData?.name}</GameName>
-      <CurrentRound>Round: {gameData?.round}</CurrentRound>
+      {/*  <GameName>{gameData?.name}</GameName>
+      <CurrentRound>Round: {gameData?.round}</CurrentRound> */}
       {winner && <GameOver winner={winner}></GameOver>}
       <PlayerContainer>
-        <PlayerOne className={gameData?.player === 1 ? "active" : ""}>
+        {/* <PlayerOne className={gameData?.player === 1 ? "active" : ""}>
           Player 1: {gameData?.player1.name}
         </PlayerOne>
         <PlayerTwo className={gameData?.player === 2 ? "active" : ""}>
           Player 2: {gameData?.player2.name}
-        </PlayerTwo>
+        </PlayerTwo> */}
       </PlayerContainer>
       {renderBoard()}
     </BoardContainer>
@@ -177,8 +207,9 @@ const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 20vh;
   color: white;
+  margin-left: 25vw;
   .active {
     font-weight: bold;
     font-size: 1.1rem;
@@ -195,15 +226,15 @@ const BoardCell = styled.div`
   align-items: center;
 `;
 
-const GameName = styled.h1`
-  color: white;
-  font-family: "gang_of_three";
-`;
+// const GameName = styled.h1`
+//   color: white;
+//   font-family: "gang_of_three";
+// `;
 
-const CurrentRound = styled.p`
-  font-size: 1.5rem;
-  font-family: "gang_of_three";
-`;
+// const CurrentRound = styled.p`
+//   font-size: 1.5rem;
+//   font-family: "gang_of_three";
+// `;
 
 const PlayerContainer = styled.div`
   display: flex;
@@ -213,17 +244,17 @@ const PlayerContainer = styled.div`
   font-family: "gang_of_three";
 `;
 
-const PlayerOne = styled.p`
-  align-self: flex-start;
-  margin-right: auto;
-  margin-left: 34vw;
-`;
+// const PlayerOne = styled.p`
+//   align-self: flex-start;
+//   margin-right: auto;
+//   margin-left: 34vw;
+// `;
 
-const PlayerTwo = styled.p`
-  align-self: flex-end;
-  margin-left: auto;
-  margin-right: 34vw;
-`;
+// const PlayerTwo = styled.p`
+//   align-self: flex-end;
+//   margin-left: auto;
+//   margin-right: 34vw;
+// `;
 
 const BoardCellBackground = styled(BoardCell)`
   width: 40px;
