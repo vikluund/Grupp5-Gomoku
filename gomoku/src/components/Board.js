@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import backgroundImage from "../assets/wood.jpg";
 import blackPiece from "../assets/BlackPiece.png";
 import whitePiece from "../assets/WhitePiece.png";
@@ -219,6 +220,24 @@ const Board = ({ gamesData }) => {
     </BoardContainer>
   );
 };
+
+Board.propTypes = {
+    gamesData: PropTypes.shape({
+      name: PropTypes.string,
+      round: PropTypes.number,
+      player: PropTypes.number,
+      player1: PropTypes.shape({
+        name: PropTypes.string,
+      }),
+      player2: PropTypes.shape({
+        name: PropTypes.string,
+      }),
+      board: PropTypes.shape({
+        tiles: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
+      }),
+    }),
+  };
+
 
 export default Board;
 
