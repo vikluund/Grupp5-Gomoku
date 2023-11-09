@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import PrimaryButton from './ButtonPrimary'
 import SecondaryButton from './ButtonSecondary'
+import BoardEmptyStatic from './BoardEmptyStatic'
 
 const WelcomeModal = () => {
     return (
         <>
             <StartContainer>
+                <BoardEmptyStatic />
                 <ModalMain>
                     <h1>
                         <span>Välkommen till</span> Go!<span>moku</span>
@@ -42,12 +44,12 @@ const WelcomeModal = () => {
 const StartContainer = styled.div`
     display: flex;
     justify-content: center;
-    text-decoration: none;
+    align-items: center;
+    width: 100%;
 `
 
 const ModalMain = styled.div`
     /* Modal box */
-    width: 65%;
     height: auto;
     margin: 1rem;
     padding: 2rem;
@@ -59,6 +61,8 @@ const ModalMain = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    position: absolute;
 
     p {
         font-family: Abel;
