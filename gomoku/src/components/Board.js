@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import backgroundImage from "../assets/wood.jpg";
 import blackPiece from "../assets/BlackPiece.png";
 import whitePiece from "../assets/WhitePiece.png";
 import GameOver from "./GameOver";
 
-const Board = () => {
+const Board = ({ gamesData }) => {
   const [gameData, setGameData] = useState({
     name: "",
     round: 1,
@@ -20,19 +21,23 @@ const Board = () => {
   const [winner, setWinner] = useState(null);
 
   useEffect(() => {
-    const fetchGame = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:3000/api/gomoku/create_game"
-        );
-        const data = await response.json();
-        setGameData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchGame();
-  }, []);
+    if (!gamesData) {
+        const fetchGame = async () => {
+            try {
+                const response = await fetch(
+                    'http://localhost:3000/api/gomoku/create_game'
+                )
+                const data = await response.json()
+                setGameData(data)
+            } catch (error) {
+                console.error('Error fetching data:', error)
+            }
+        }
+        fetchGame()
+    } else {
+        setGameData(gamesData)
+    }
+}, [gamesData])
 
   const resetGame = () => {
     setGameData({
@@ -215,6 +220,24 @@ const Board = () => {
     </BoardContainer>
   );
 };
+
+Board.propTypes = {
+    gamesData: PropTypes.shape({
+      name: PropTypes.string,
+      round: PropTypes.number,
+      player: PropTypes.number,
+      player1: PropTypes.shape({
+        name: PropTypes.string,
+      }),
+      player2: PropTypes.shape({
+        name: PropTypes.string,
+      }),
+      board: PropTypes.shape({
+        tiles: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
+      }),
+    }),
+  };
+
 
 export default Board;
 

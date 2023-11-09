@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import PropTypes from "prop-types";
-import backgroundImage from '../assets/wood.jpg'
-import blackPiece from '../assets/BlackPiece.png'
-import whitePiece from '../assets/WhitePiece.png'
+import PropTypes from 'prop-types'
+import PrimaryButton from './ButtonPrimary'
+import Board from './Board'
 
 const Games = () => {
     const [gamesData, setgamesData] = useState(null)
@@ -20,70 +20,57 @@ const Games = () => {
         }
     }
 
-    const renderBoard = () => {
-        if (!gamesData) {
-            return
-        }
-
-        return gamesData.board.tiles.map((row, rowIndex) => (
-            <BoardRow key={rowIndex}>
-                {row.map((col, colIndex) => (
-                    <BoardCellBackground key={colIndex}>
-                        {col === 0 && <EmptyCell></EmptyCell>}
-                        {col === 1 && <Player1Cell></Player1Cell>}
-                        {col === 2 && <Player2Cell></Player2Cell>}
-                    </BoardCellBackground>
-                ))}
-            </BoardRow>
-        ))
-    }
-
     return (
         <>
-            <GameButton>
-                <h2>Spelrum som är online</h2>
-                <section>
-                    <button onClick={() => fetchGame('/full')}>
-                        Fetch Full
-                    </button>
-                    <button onClick={() => fetchGame('/white')}>
-                        Fetch White
-                    </button>
-                    <button onClick={() => fetchGame('/black')}>
-                        Fetch Black
-                    </button>
-                </section>
-            </GameButton>
-            {/* {gamesData && <Board gameData={gamesData} />} */}
-            <BoardContainer>{renderBoard()}</BoardContainer>
+                <ModalMain>
+                    <GameButton>
+                        <h2>Spelrum som är online</h2>
+                        <section>
+                            <button onClick={() => fetchGame('/full')}>
+                                Fetch Full
+                            </button>
+                            <button onClick={() => fetchGame('/white')}>
+                                Fetch White
+                            </button>
+                            <button onClick={() => fetchGame('/black')}>
+                                Fetch Black
+                            </button>
+                        </section>
+                        <div className="button-container">
+                            <Link to="/" className="buttonLink">
+                                <PrimaryButton
+                                    buttonText="Startsida"
+                                    disabled={false}
+                                />
+                            </Link>
+                        </div>
+                    </GameButton>
+                </ModalMain>
+            <Board gamesData={gamesData} />
         </>
     )
 }
 
 Games.propTypes = {
     gamesData: PropTypes.shape({
-      name: PropTypes.string,
-      round: PropTypes.number,
-      player: PropTypes.number,
-      player1: PropTypes.shape({
         name: PropTypes.string,
-      }),
-      player2: PropTypes.shape({
-        name: PropTypes.string,
-      }),
-      board: PropTypes.shape({
-        tiles: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
-      }),
-    }),
-  };
+        round: PropTypes.number,
+        player: PropTypes.number,
+        player1: PropTypes.shape({
+            name: PropTypes.string
+        }),
+        player2: PropTypes.shape({
+            name: PropTypes.string
+        }),
+        board: PropTypes.shape({
+            tiles: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+        })
+    })
+}
 
 export default Games
 
 const GameButton = styled.div`
-    position: absolute;
-    padding: 2rem;
-    top: 50%;
-    right: 35%;
     text-align: center;
     background-color: #131d20;
     border-radius: 10px;
@@ -116,54 +103,52 @@ const GameButton = styled.div`
     }
 `
 
-const BoardContainer = styled.div`
+const ModalMain = styled.div`
+    /* Modal box */
+    height: auto;
+    margin: 1rem;
+    top: 50%;
+    left: 18%;
+    padding: 2rem;
+    border-radius: 0.32rem;
+    border: 1px solid var(--black);
+    background-color: var(--black-blue);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    color: white;
-    .active {
-        font-weight: bold;
-        font-size: 1.1rem;
-    }
-    width: 100%;
-`
-
-const BoardCell = styled.div`
-    width: 40px;
-    height: 40px;
-    border: 1px solid black;
-    display: flex;
     justify-content: center;
     align-items: center;
-`
+    position: absolute;
 
-const BoardCellBackground = styled(BoardCell)`
-    width: 40px;
-    height: 40px;
-    background-image: url(${backgroundImage});
-    background-size: cover;
-    background-position: center;
-`
+    p {
+        font-family: Abel;
+        text-align: center;
+        font-size: 1.25rem;
+    }
 
-const BoardRow = styled.div`
-    display: flex;
-`
+    h1 {
+        font-family: Abel;
+        text-align: center;
+        font-size: 2.25rem;
+        font-weight: 400;
+        line-height: normal;
 
-const EmptyCell = styled(BoardCell)`
-    background-color: transparent;
-`
+        span {
+            color: var(--green-light);
+        }
+    }
 
-const Player1Cell = styled(BoardCell)`
-    background-image: url(${blackPiece});
-    background-size: cover;
-    background-position: center;
-    background-color: transparent;
-`
+    .buttonLink {
+        text-decoration: none;
+    }
 
-const Player2Cell = styled(BoardCell)`
-    background-image: url(${whitePiece});
-    background-size: cover;
-    background-position: center;
-    background-color: transparent;
+    .button-container {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+    }
 `
