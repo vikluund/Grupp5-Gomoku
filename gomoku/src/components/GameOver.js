@@ -11,9 +11,15 @@ const GameOver = ({ winner, playAgain }) => {
     return (
         <ModalContainer>
             <GameOverContainer>
-                <p>
-                    <span>Spelare {winner}</span> vann!
-                </p>
+                {winner === 'tie' ? (
+                    <p>
+                        Spelet blev <span>oavgjort</span>
+                    </p>
+                ) : (
+                    <p>
+                        <span>Spelare {winner}</span> vann!
+                    </p>
+                )}
                 <div className="button-container">
                     <PrimaryButtonSmall
                         buttonText="Spela igen"
