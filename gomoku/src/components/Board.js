@@ -34,6 +34,21 @@ const Board = () => {
     fetchGame();
   }, []);
 
+  const resetGame = () => {
+    setGameData({
+      name: "",
+      round: 1,
+      player: 1,
+      player1: { name: "" },
+      player2: { name: "" },
+      state: "playing",
+      board: {
+        tiles: Array(17).fill(Array(17).fill(0)),
+      },
+    });
+    setWinner(null);
+  };
+
   const renderBoard = () => {
     if (!gameData) {
       return <div>Loading...</div>;
@@ -187,7 +202,7 @@ const Board = () => {
     <BoardContainer>
       {/*  <GameName>{gameData?.name}</GameName>
       <CurrentRound>Round: {gameData?.round}</CurrentRound> */}
-      {winner && <GameOver winner={winner}></GameOver>}
+      {winner && <GameOver winner={winner} playAgain={resetGame}></GameOver>}
       <PlayerContainer>
         {/* <PlayerOne className={gameData?.player === 1 ? "active" : ""}>
           Player 1: {gameData?.player1.name}
@@ -207,9 +222,7 @@ const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20vh;
   color: white;
-  margin-left: 25vw;
   .active {
     font-weight: bold;
     font-size: 1.1rem;
