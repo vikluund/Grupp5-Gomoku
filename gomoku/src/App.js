@@ -1,9 +1,13 @@
-import "./App.css";
-import React from "react";
-import Board from "./components/Board";
-import Navbar from "./components/GomokuHeader/NavbarComponent";
-import Footer from "./components/GomokuFooter/FooterComponent";
-import GomokuSide from "./components/GomokuSide";
+import './App.css'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Navbar from './components/GomokuHeader/NavbarComponent'
+import Footer from './components/GomokuFooter/FooterComponent'
+import GomokuSide from './components/GomokuSide'
+
+import Board from './components/Board'
+import WelcomeModal from './components/WelcomeModal'
+import Games from './components/Games'
 
 function App() {
     return (
@@ -13,22 +17,21 @@ function App() {
             </div>
             <div className="app-container main-background">
                 <div className="main-container">
-                    <Board></Board>
+                    <Router>
+                        <Routes>
+                            <Route path="/" element={<WelcomeModal />} />
+                            <Route path="/newRoom" element={<Board />} />
+                            <Route path="/chooseRoom" element={<Games />} />
+                        </Routes>
+                    </Router>
                 </div>
                 <div className="side-container">
                     <GomokuSide />
                 </div>
             </div>
             <Footer />
-            {/*
-            <div style={{ backgroundColor: '#000' }}>
-                <p></p>
-                FOOTER
-                <p></p>
-            </div>
-            */}
         </div>
     )
 }
 
-export default App;
+export default App
