@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import GameRulesCompoent from "../GameRulesComponent";
 
 const Nav = styled.nav`
   display: flex;
@@ -44,13 +45,6 @@ const RulesFlex = styled.div`
   left: 20%;
 `;
 
-const RulesCard = styled.div`
-  width: 600px;
-  height: 600px;
-  border: solid #debd76 2px;
-  background-color: white;
-`;
-
 const Navbar = () => {
   const [show, setShow] = useState(false);
 
@@ -71,7 +65,7 @@ const Navbar = () => {
       </Nav>
       {show && (
         <RulesFlex>
-          <RulesCard></RulesCard>
+          <GameRulesCompoent />
         </RulesFlex>
       )}
     </>
