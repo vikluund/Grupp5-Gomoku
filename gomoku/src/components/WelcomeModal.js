@@ -1,47 +1,55 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import PrimaryButton from './ButtonPrimary'
 import SecondaryButton from './ButtonSecondary'
+import BoardEmptyStatic from './BoardEmptyStatic'
 
 const WelcomeModal = () => {
-    const handlePrimaryButtonClick = () => {
-        alert('Clicked Nytt Spelrum')
-    }
-
-    const handleSecondaryButtonClick = () => {
-        alert('Clicked Välj Spelrum')
-    }
-
     return (
         <>
-            <ModalMain>
-                <h1>
-                    <span>Välkommen till</span> Go!<span>moku</span>
-                </h1>
-                <p>Här kan du spela online mot en annan spelare eller vän.</p>
-                <p>
-                    Starta ett nytt spel eller välj ett spelrum från en lista.
-                </p>
-                <div className="button-container">
-                    <PrimaryButton
-                        buttonText="Nytt Spelrum"
-                        onClick={handlePrimaryButtonClick}
-                        disabled={false}
-                    />
-                    <SecondaryButton
-                        buttonText="Välj Spelrum"
-                        onClick={handleSecondaryButtonClick}
-                        disabled={false}
-                    />
-                </div>
-            </ModalMain>
+            <StartContainer>
+                <BoardEmptyStatic />
+                <ModalMain>
+                    <h1>
+                        <span>Välkommen till</span> Go!<span>moku</span>
+                    </h1>
+                    <p>
+                        Här kan du spela online mot en annan spelare eller vän.
+                    </p>
+                    <p>
+                        Starta ett nytt spel eller välj ett spelrum från en
+                        lista.
+                    </p>
+                    <div className="button-container">
+                        <Link to="/newRoom" className="buttonLink">
+                            <PrimaryButton
+                                buttonText="Nytt Spelrum"
+                                disabled={false}
+                            />
+                        </Link>
+                        <Link to="/chooseRoom" className="buttonLink">
+                            <SecondaryButton
+                                buttonText="Välj Spelrum"
+                                disabled={false}
+                            />
+                        </Link>
+                    </div>
+                </ModalMain>
+            </StartContainer>
         </>
     )
 }
 
+const StartContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+`
+
 const ModalMain = styled.div`
     /* Modal box */
-    width: 65%;
     height: auto;
     margin: 1rem;
     padding: 2rem;
@@ -53,6 +61,8 @@ const ModalMain = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    position: absolute;
 
     p {
         font-family: Abel;
@@ -71,6 +81,11 @@ const ModalMain = styled.div`
             color: var(--green-light);
         }
     }
+
+    .buttonLink {
+        text-decoration: none;
+    }
+
     .button-container {
         margin-top: 2rem;
         margin-bottom: 1rem;
