@@ -3,7 +3,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/GomokuHeader/NavbarComponent'
 import Footer from './components/GomokuFooter/FooterComponent'
-import GomokuSide from './components/GomokuSide'
+// import GomokuSide from './components/GomokuSide'
 
 import Board from './components/Board'
 import WelcomeModal from './components/WelcomeModal'
@@ -25,9 +25,9 @@ function App() {
                         </Routes>
                     </Router>
                 </div>
-                <div className="side-container">
+                {/* <div className="side-container">
                     <GomokuSide />
-                </div>
+                </div> */}
             </div>
             <div className="footer-container">
                 <Footer />

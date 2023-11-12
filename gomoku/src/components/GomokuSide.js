@@ -5,7 +5,7 @@ import blackPiece from "../assets/BlackPiece.png";
 import whitePiece from "../assets/WhitePiece.png";
 
 const SideContainer = styled.div`
- display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 `;
@@ -54,77 +54,93 @@ const PlayerTimer = styled.div`
 `;
 
 const LineSeparator = styled.div`
-  width: 80%;
+  width: 40%;
   height: 2px;
   background-color: var(--wood);
   margin: 20px 20px;
 `;
 
-const GomokuSide = ({ currentPlayer, onGameEnd }) => {
-  const [player1Timer, setPlayer1Timer] = useState(60);
-  const [player2Timer, setPlayer2Timer] = useState(60);
+const MessageContainer = styled.div`
+margin-bottom: 20px;
+`;
 
-  useEffect(() => {
-    // Återställ tiden till 00:00 när det är inte spelarens tur
-    if (currentPlayer === 1) {
-      setPlayer2Timer(60);
-    } else if (currentPlayer === 2) {
-      setPlayer1Timer(60);
-    }
-  }, [currentPlayer]);
+const Message = styled.div`
+font-size: 18px;
+color: #ff0000;
+font-family: "Montserrat";
+`;
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (currentPlayer === 1 && player1Timer > 0) {
-        setPlayer1Timer((prevTime) => prevTime - 1);
-      } else if (currentPlayer === 2 && player2Timer > 0) {
-        setPlayer2Timer((prevTime) => prevTime - 1);
-      } else if (player1Timer === 0) {
-        // Spelare 2 vinner
-        onGameEnd(2);
-      } else if (player2Timer === 0) {
-        // Spelare 1 vinner
-        onGameEnd(1);
-      }
-    }, 1000);
 
-    return () => {
-      clearInterval(interval);
+const GomokuSide = ({ activePlayer, switchPlayer }) => {
+    const initialTimerValue = 10;
+    const [player1Timer, setPlayer1Timer] = useState(initialTimerValue);
+    const [player2Timer, setPlayer2Timer] = useState(initialTimerValue);
+    const [gameMessage, setGameMessage] = useState("");
+
+    const handleTimerExpiration = () => {
+      const winningPlayer = activePlayer === 1 ? 2 : 1;
+      const message = `Spelet avslutades. Spelare ${winningPlayer} vinner!`;
+      setGameMessage(message);
     };
-  }, [currentPlayer, player1Timer, player2Timer]);
 
-  return (
-    <SideContainer>
-      <PlayerBox>
-        <PlayerInfo>
-          <PlayerImage src={blackPiece} alt="Spelare 1" />
-          <PlayerName>Spelare 1:</PlayerName>
-        </PlayerInfo>
-        <PlayerTimer>
-          {`${String(Math.floor(player1Timer / 60)).padStart(2, "0")}:${String(
-            player1Timer % 60
-          ).padStart(2, "0")}`}
-        </PlayerTimer>
-      </PlayerBox>
-      <LineSeparator />
-      <PlayerBox>
-        <PlayerInfo>
-          <PlayerImage src={whitePiece} alt="Spelare 2" />
-          <PlayerNamePlayer2>Spelare 2:</PlayerNamePlayer2>
-        </PlayerInfo>
-        <PlayerTimer>
-          {`${String(Math.floor(player2Timer / 60)).padStart(2, "0")}:${String(
-            player2Timer % 60
-          ).padStart(2, "0")}`}
-        </PlayerTimer>
-      </PlayerBox>
-    </SideContainer>
-  );
-};
+    useEffect(() => {
+      let timerInterval;
 
-GomokuSide.propTypes = {
-  currentPlayer: PropTypes.number.isRequired,
-  onGameEnd: PropTypes.func.isRequired,
-};
+      if (player1Timer > 0 && player2Timer > 0) {
+        timerInterval = setInterval(() => {
+          if (activePlayer === 1) {
+            setPlayer1Timer((prevTimer) =>
+              prevTimer === 0 ? prevTimer : prevTimer - 1
+            );
+          } else {
+            setPlayer2Timer((prevTimer) =>
+              prevTimer === 0 ? prevTimer : prevTimer - 1
+            );
+          }
+        }, 1000);
+      } else {
+        handleTimerExpiration();
+      }
 
-export default GomokuSide;
+      return () => clearInterval(timerInterval);
+    }, [activePlayer, player1Timer, player2Timer]);
+
+    useEffect(() => {
+      setPlayer1Timer(initialTimerValue);
+      setPlayer2Timer(initialTimerValue);
+    }, [activePlayer, switchPlayer]);
+
+    const formatTime = (seconds) => {
+      const minutes = Math.floor(seconds / 60).toString().padStart(2, "0");
+      const secondsFormatted = (seconds % 60).toString().padStart(2, "0");
+      return `${minutes}:${secondsFormatted}`;
+    };
+
+    return (
+      <SideContainer>
+        <MessageContainer>{gameMessage && <Message>{gameMessage}</Message>}</MessageContainer>
+        <PlayerBox>
+          <PlayerInfo>
+            <PlayerImage src={blackPiece} alt="Spelare 1" />
+            <PlayerName>Spelare 1:</PlayerName>
+          </PlayerInfo>
+          <PlayerTimer>{formatTime(player1Timer)}</PlayerTimer>
+        </PlayerBox>
+        <LineSeparator />
+        <PlayerBox>
+          <PlayerInfo>
+            <PlayerImage src={whitePiece} alt="Spelare 2" />
+            <PlayerNamePlayer2>Spelare 2:</PlayerNamePlayer2>
+          </PlayerInfo>
+          <PlayerTimer>{formatTime(player2Timer)}</PlayerTimer>
+        </PlayerBox>
+      </SideContainer>
+    );
+  };
+
+  GomokuSide.propTypes = {
+    activePlayer: PropTypes.number.isRequired,
+    switchPlayer: PropTypes.func.isRequired,
+  };
+
+  export default GomokuSide;

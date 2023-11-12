@@ -4,6 +4,8 @@ import backgroundImage from "../assets/wood.jpg";
 import blackPiece from "../assets/BlackPiece.png";
 import whitePiece from "../assets/WhitePiece.png";
 import GameOver from "./GameOver";
+import GomokuSide from "./GomokuSide";
+
 
 const Board = () => {
   const [gameData, setGameData] = useState({
@@ -197,38 +199,59 @@ const Board = () => {
       </BoardRow>
     ));
   };
-
+  const switchPlayer = () => {
+    setGameData((prevGameData) => ({
+      ...prevGameData,
+      player: prevGameData.player === 1 ? 2 : 1,
+    }));
+  };
   return (
     <BoardContainer>
-      {/*  <GameName>{gameData?.name}</GameName>
-      <CurrentRound>Round: {gameData?.round}</CurrentRound> */}
       {winner && <GameOver winner={winner} playAgain={resetGame}></GameOver>}
       <PlayerContainer>
-        {/* <PlayerOne className={gameData?.player === 1 ? "active" : ""}>
-          Player 1: {gameData?.player1.name}
-        </PlayerOne>
-        <PlayerTwo className={gameData?.player === 2 ? "active" : ""}>
-          Player 2: {gameData?.player2.name}
-        </PlayerTwo> */}
+        <GomokuSide activePlayer={gameData.player} switchPlayer={switchPlayer} />
       </PlayerContainer>
       {renderBoard()}
     </BoardContainer>
   );
 };
-
 export default Board;
+
+
 
 const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
+  margin-left: 100px;
   .active {
     font-weight: bold;
     font-size: 1.1rem;
   }
+  position: relative;
   width: 100%;
 `;
+
+const PlayerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  font-family: "gang_of_three";
+  position: absolute;
+  top: 200px;
+  right: -200px;
+  transform: translateY(calc(-50%));
+
+  @media (max-width: 768px) {
+    position: static;
+    transform: translateY(0);
+  }
+`;
+
+
+
 
 const BoardCell = styled.div`
   width: 40px;
@@ -239,35 +262,7 @@ const BoardCell = styled.div`
   align-items: center;
 `;
 
-// const GameName = styled.h1`
-//   color: white;
-//   font-family: "gang_of_three";
-// `;
 
-// const CurrentRound = styled.p`
-//   font-size: 1.5rem;
-//   font-family: "gang_of_three";
-// `;
-
-const PlayerContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: 10px;
-  font-family: "gang_of_three";
-`;
-
-// const PlayerOne = styled.p`
-//   align-self: flex-start;
-//   margin-right: auto;
-//   margin-left: 34vw;
-// `;
-
-// const PlayerTwo = styled.p`
-//   align-self: flex-end;
-//   margin-left: auto;
-//   margin-right: 34vw;
-// `;
 
 const BoardCellBackground = styled(BoardCell)`
   width: 40px;
